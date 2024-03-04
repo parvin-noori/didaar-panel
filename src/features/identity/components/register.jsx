@@ -13,15 +13,18 @@ const { Text } = Typography;
 import { Link } from "react-router-dom";
 
 export default function Register() {
-  const onFinish = (values) => {
-    console.log("success :", values);
-  };
+  const {
+    register,
+    formState: { errors },
+    watch,
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+
   const onFinishFailed = (errorInfo) => {
     console.log("failed:", errorInfo);
   };
-  const {register,formState:{errors},watch,handleSubmit}=useForm()
-
-  const onSubmit=data=>console.log(data)
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -29,10 +32,18 @@ export default function Register() {
         style={{
           width: 70,
         }}
-      >
-        <Select.Option value="98">+98</Select.Option>
-        <Select.Option value="86">+86</Select.Option>
-      </Select>
+        defaultValue="+98"
+        options={[
+          {
+            value: "98",
+            label: "+98",
+          },
+          {
+            value: "92",
+            label: "+92",
+          },
+        ]}
+      />
     </Form.Item>
   );
   return (
@@ -55,7 +66,7 @@ export default function Register() {
           initialValues={{ remember: true }}
           autoComplete="off"
           onFinishFailed={onFinishFailed}
-          onFinish={onFinish}
+          onFinish={handleSubmit(onSubmit)}
         >
           <Form.Item
             label="phone number"
@@ -64,6 +75,7 @@ export default function Register() {
           >
             <Input
               addonBefore={prefixSelector}
+              name="phone"
               style={{
                 width: "100%",
               }}
