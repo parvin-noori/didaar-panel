@@ -8,7 +8,7 @@ import {
   Card,
   Typography,
 } from "antd";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 const { Text } = Typography;
 import { Link } from "react-router-dom";
 
@@ -18,6 +18,7 @@ export default function Register() {
     formState: { errors },
     watch,
     handleSubmit,
+    control,
   } = useForm();
 
   const onSubmit = (data) => console.log(data);
@@ -73,12 +74,12 @@ export default function Register() {
             name="phone"
             rules={[{ required: true, message: "please input your number" }]}
           >
-            <Input
-              addonBefore={prefixSelector}
+            <Controller
               name="phone"
-              style={{
-                width: "100%",
-              }}
+              control={control}
+              render={({ field }) => (
+                <Input {...field} addonBefore={prefixSelector} />
+              )}
             />
           </Form.Item>
           <Form.Item
@@ -86,14 +87,22 @@ export default function Register() {
             name="password"
             rules={[{ required: true, message: "please input your password" }]}
           >
-            <Input.Password />
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => <Input.Password {...field} />}
+            />
           </Form.Item>
           <Form.Item
             label="confirm password"
             name="confirmPassword"
             rules={[{ required: true, message: "please input your password" }]}
           >
-            <Input.Password />
+            <Controller
+              name="confirmPassword"
+              control={control}
+              render={({ field }) => <Input.Password {...field} />}
+            />
           </Form.Item>
 
           <Button type="primary" htmlType="submit" block>
