@@ -1,0 +1,18 @@
+{
+    "register":{
+        "phoneNumber":"شماره موبایل",
+        "password":"رمز عبور",
+        "alreadyRegistered":"اکانت کاربری دارید؟",
+        "login":" ورود",
+        "confirmPassword":"تکرار رمز عبور",
+        "register":"ثبت نام",
+        "validation": {
+            "mobileRequired": "موبایل الزامی است",
+            "passwordRequired": "رمز عبور الزامی است",
+            "repeatPasswordRequired": "تکرار رمز عبور الزامی است",
+            "mobileLength": "شماره موبایل باید 11 رقم باشد",
+            "notMatching": "عدم تطابق رمز های وارد شده",
+            "PasswordTooShort": "حداقل طول رمز عبور باید 6 کاراکتر باشد",
+          }
+    }
+}

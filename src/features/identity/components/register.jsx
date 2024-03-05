@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Checkbox,
@@ -9,22 +10,41 @@ import {
   Typography,
   message,
 } from "antd";
-import { useForm } from "react-hook-form";
 const { Text } = Typography;
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSubmit } from "react-router-dom";
 import { httpService } from "../../../core/http-service";
+import { useTranslation } from "react-i18next";
 
 export default function Register() {
-  const {
-    register,
-    formState: { errors },
-    watch,
-    handleSubmit,
-  } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submitForm = useSubmit();
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {
-    console.log(values);
-    console.log("Success:", values);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  }, [isSubmitting]);
+
+  const onFinish = async (values) => {
+    try {
+      console.log(values);
+      setIsSubmitting(true);
+      const { confirmPassword, prefix, ...userData } = values;
+      submitForm(userData, { method: "post" });
+      message.success("success");
+    } catch (error) {
+      message.success("error");
+    } finally {
+      // try {
+      //   setIsSubmitting(false); // Set loading state to false after form submission
+      // } catch (err) {
+      //   console.error("Error setting loading state:", err);
+      // }
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -51,6 +71,9 @@ export default function Register() {
       />
     </Form.Item>
   );
+
+  // const isSuccessOperation = useActionData();
+    const { t } = useTranslation();
   return (
     <Flex
       justify="center"
@@ -60,8 +83,8 @@ export default function Register() {
       gap="middle"
     >
       <Text>
-        Already have an account?
-        <Link to="/login"> Log in here.</Link>
+        {t("register.phoneNumber")}
+        <Link to="/login"> {t("register.login")}</Link>
       </Text>
       <Card>
         <Form
@@ -75,20 +98,23 @@ export default function Register() {
         >
           <Form.Item
             label="phone number"
-            name="phone"
+            name="mobile"
             rules={[
               { required: true, message: "phone number is required" },
               { min: 11, message: "phone number must be 11" },
             ]}
           >
-            <Input addonBefore={prefixSelector} {...register("phone")} />
+            <Input addonBefore={prefixSelector} />
           </Form.Item>
           <Form.Item
             label="password"
             name="password"
-            rules={[{ required: true, message: "password is required" }]}
+            rules={[
+              { required: true, message: "password is required" },
+              { min: 6, message: "phone number must be 6" },
+            ]}
           >
-            <Input.Password {...register("password")} />
+            <Input.Password />
           </Form.Item>
           <Form.Item
             label="confirm password"
@@ -108,9 +134,14 @@ export default function Register() {
               }),
             ]}
           >
-            <Input.Password {...register("confirmPassword")} />
+            <Input.Password />
           </Form.Item>
-          <Button type="primary" htmlType="submit" block>
+          <Button
+            type="primary"
+            htmlType="submit"
+            block
+            loading={isSubmitting}
+          >
             register
           </Button>
         </Form>
