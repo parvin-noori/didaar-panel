@@ -12,6 +12,7 @@ import {
 import { useForm } from "react-hook-form";
 const { Text } = Typography;
 import { Link } from "react-router-dom";
+import { httpService } from "../../../core/http-service";
 
 export default function Register() {
   const {
@@ -116,4 +117,11 @@ export default function Register() {
       </Card>
     </Flex>
   );
+}
+
+export async function registerAction({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  const response = await httpService.post("/Users", data);
+  return response.status === 200;
 }
