@@ -7,8 +7,9 @@ import {
   Select,
   Card,
   Typography,
+  message,
 } from "antd";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 const { Text } = Typography;
 import { Link } from "react-router-dom";
 
@@ -18,10 +19,12 @@ export default function Register() {
     formState: { errors },
     watch,
     handleSubmit,
-    control,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onFinish = (values) => {
+    console.log(values);
+    console.log("Success:", values);
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log("failed:", errorInfo);
@@ -56,8 +59,8 @@ export default function Register() {
       gap="middle"
     >
       <Text>
-        قبلا ثبت نام کرده اید؟
-        <Link to="/login">وارد شوید</Link>
+        Already have an account?
+        <Link to="/login"> Log in here.</Link>
       </Text>
       <Card>
         <Form
@@ -67,44 +70,45 @@ export default function Register() {
           initialValues={{ remember: true }}
           autoComplete="off"
           onFinishFailed={onFinishFailed}
-          onFinish={handleSubmit(onSubmit)}
+          onFinish={onFinish}
         >
           <Form.Item
             label="phone number"
             name="phone"
-            rules={[{ required: true, message: "please input your number" }]}
+            rules={[
+              { required: true, message: "phone number is required" },
+              { min: 11, message: "phone number must be 11" },
+            ]}
           >
-            <Controller
-              name="phone"
-              control={control}
-              render={({ field }) => (
-                <Input {...field} addonBefore={prefixSelector} />
-              )}
-            />
+            <Input addonBefore={prefixSelector} {...register("phone")} />
           </Form.Item>
           <Form.Item
             label="password"
             name="password"
-            rules={[{ required: true, message: "please input your password" }]}
+            rules={[{ required: true, message: "password is required" }]}
           >
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => <Input.Password {...field} />}
-            />
+            <Input.Password {...register("password")} />
           </Form.Item>
           <Form.Item
             label="confirm password"
             name="confirmPassword"
-            rules={[{ required: true, message: "please input your password" }]}
+            dependencies={["password"]}
+            rules={[
+              { required: true, message: "confirm password is required" },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error("The new password that you entered do not match!")
+                  );
+                },
+              }),
+            ]}
           >
-            <Controller
-              name="confirmPassword"
-              control={control}
-              render={({ field }) => <Input.Password {...field} />}
-            />
+            <Input.Password {...register("confirmPassword")} />
           </Form.Item>
-
           <Button type="primary" htmlType="submit" block>
             register
           </Button>

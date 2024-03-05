@@ -32,9 +32,16 @@ export default function Login() {
     </Form.Item>
   );
   return (
-    <Flex justify="center" align="center" style={{ height: "100vh" }} vertical gap="middle">
-      <Text>قبلا ثبت نام نکرده اید؟
-        <Link to="/register">ثبت نام کنید</Link>
+    <Flex
+      justify="center"
+      align="center"
+      style={{ height: "100vh" }}
+      vertical
+      gap="middle"
+    >
+      <Text>
+        Don't have an account? 
+        <Link to="/register"> Sign up</Link>
       </Text>
       <Card>
         <Form
