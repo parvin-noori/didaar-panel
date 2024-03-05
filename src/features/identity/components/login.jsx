@@ -8,6 +8,7 @@ import {
   Card,
   Typography,
 } from "antd";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 const { Text } = Typography;
 
@@ -31,6 +32,7 @@ export default function Login() {
       </Select>
     </Form.Item>
   );
+  const { t } = useTranslation();
   return (
     <Flex
       justify="center"
@@ -40,8 +42,8 @@ export default function Login() {
       gap="middle"
     >
       <Text>
-        Don't have an account? 
-        <Link to="/register"> Sign up</Link>
+        {t("login.areNotRegistered")}
+        <Link to="/register"> {t("login.register")}</Link>
       </Text>
       <Card>
         <Form
@@ -54,9 +56,9 @@ export default function Login() {
           onFinish={onFinish}
         >
           <Form.Item
-            label="phone number"
+            label={t("login.phoneNumber")}
             name="phone"
-            rules={[{ required: true, message: "please input your number" }]}
+            rules={[{ required: true, message: t("login.validation.mobileRequired") }]}
           >
             <Input
               addonBefore={prefixSelector}
@@ -66,9 +68,9 @@ export default function Login() {
             />
           </Form.Item>
           <Form.Item
-            label="password"
+            label={t("login.password")}
             name="password"
-            rules={[{ required: true, message: "please input your password" }]}
+            rules={[{ required: true, message: t('login.validation.passwordRequired') }]}
           >
             <Input.Password />
           </Form.Item>
@@ -79,11 +81,11 @@ export default function Login() {
               span: 16,
             }}
           >
-            <Checkbox>remember me</Checkbox>
+            <Checkbox>{t("login.rememberMe")}</Checkbox>
           </Form.Item>
 
           <Button type="primary" htmlType="submit" block>
-            login
+            {t("login.login")}
           </Button>
         </Form>
       </Card>

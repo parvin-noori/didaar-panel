@@ -1,9 +1,10 @@
 {
-    "register":{
+    "register": {
         "phoneNumber":"شماره موبایل",
         "password":"رمز عبور",
         "alreadyRegistered":"اکانت کاربری دارید؟",
         "login":" ورود",
+        "signin":"وارد شوید",
         "confirmPassword":"تکرار رمز عبور",
         "register":"ثبت نام",
         "validation": {
@@ -12,7 +13,21 @@
             "repeatPasswordRequired": "تکرار رمز عبور الزامی است",
             "mobileLength": "شماره موبایل باید 11 رقم باشد",
             "notMatching": "عدم تطابق رمز های وارد شده",
-            "PasswordTooShort": "حداقل طول رمز عبور باید 6 کاراکتر باشد",
+            "PasswordTooShort": "حداقل طول رمز عبور باید 6 کاراکتر باشد"
+          }
+    },
+    "login":{
+        "phoneNumber":"شماره موبایل",
+        "password":"رمز عبور",
+        "areNotRegistered": "ثبت نام نکرده اید؟",
+        "register": "ثبت نام کنید",
+        "rememberMe":"مرا به خاطر بسپار",
+        "login":"ورود",
+        "validation": {
+            "login":"login",
+            "mobileRequired": "موبایل الزامی است",
+            "passwordRequired": "رمز عبور الزامی است",
+            "IncorrectUserNameOrPassword": "موبایل یا رمز عبور صحیح نمی باشد"
           }
     }
 }
