@@ -28,5 +28,26 @@
             "passwordRequired": "Password is required",
             "IncorrectUserNameOrPassword": "The username or password is incorrect"
           }
+    },
+    "mainLayout":{
+        "sidebar":{
+            "deal":"Deal",
+            "activity":"Activity",
+            "case":"Cases",
+            "contact":"Contact",
+            "note":"note",
+            "message":"message",
+            "invoice":"invoice"
+        }
+        
+    },
+    "deal":{
+            "rowListview":"row listview",
+            "colListview":"col listview",
+            "forecast":"forecast",
+            "createrowListview":"create row listview",
+            "all":"all",
+            "todayAndLastDays":"today and last days"
     }
+    
 }

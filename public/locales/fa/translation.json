@@ -29,5 +29,25 @@
             "passwordRequired": "رمز عبور الزامی است",
             "IncorrectUserNameOrPassword": "موبایل یا رمز عبور صحیح نمی باشد"
           }
-    }
+    },
+    "mainLayout":{
+        "sidebar":{
+            "deal":"معاملات",
+            "activity":"فعالیت ها",
+            "case":"کارت ها",
+            "contact":"اشخاص و شرکت ها",
+            "note":"یادداشت ها",
+            "message":"پیامک ها",
+            "invoice":"صورت های مالی"
+        }
+        
+    },
+    "deal":{
+        "rowListview":"کاریز",
+        "colListview":"لیست",
+        "forecast":"پیش بینی",
+        "createrowListview":"ایجاد کاریز",
+        "all":"همه",
+        "todayAndLastDays":"امروز و تاریخ گذشته"
+}
 }

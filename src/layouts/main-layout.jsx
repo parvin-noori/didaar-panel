@@ -8,6 +8,8 @@ import {
   Dropdown,
   Typography,
   Modal,
+  Divider,
+  theme,
 } from "antd";
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -22,14 +24,16 @@ import {
 } from "@ant-design/icons";
 import ChangeLanguages from "../components/change-languages";
 import Sidebar from "./main-layout/sidebar";
+import { blue, gray, grey, red } from "@ant-design/colors";
 
 export default function MainLayout() {
   const [collapsed, setCollapsed] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const token = localStorage.getItem("token");
+  const userToken = localStorage.getItem("token");
   const navigate = useNavigate();
+  const { token } = theme.useToken();
 
-  if (!token) {
+  if (!userToken) {
     navigate("/login");
   }
   const onSearch = (value, _e, info) => console.log(info?.source, value);
@@ -97,29 +101,41 @@ export default function MainLayout() {
   ];
   return (
     <div>
-      <Layout>
-        <Row align="middle" style={{ padding: "1rem" }}>
+      <Layout style={{height:"100vh"}}>
+        <Row
+          align="middle"
+          style={{ padding: "1rem", backgroundColor: token.headerBg }}
+        >
           <Col span={1}>
             {" "}
             <Button
               type="text"
-              icon={collapsed ? <MenuOutlined /> : <CloseOutlined />}
+              icon={
+                collapsed ? (
+                  <MenuOutlined style={{ color: "#fff", fontSize: "1.3rem" }} />
+                ) : (
+                  <CloseOutlined
+                    style={{ color: "#fff", fontSize: "1.3rem" }}
+                  />
+                )
+              }
               onClick={() => setCollapsed(!collapsed)}
             ></Button>
           </Col>
-          <Col span={1}>
-            <ChangeLanguages />
-          </Col>
+
           <Col span={6}>
             {" "}
             <Search placeholder="جستجو" allowClear onSearch={onSearch} />
           </Col>
           <Col span={1} offset={15}>
             <Dropdown menu={{ items }} trigger="click">
-              <span type="text">
+              <Button type="text" style={{ color: "#fff" }}>
                 <PlusOutlined />
-              </span>
+              </Button>
             </Dropdown>
+          </Col>
+          <Col span={1}>
+            <ChangeLanguages />
           </Col>
         </Row>
 
@@ -130,10 +146,10 @@ export default function MainLayout() {
 
           {/* <Content></Content> */}
           {/* <Footer></Footer> */}
-          <Sider collapsed={collapsed} style={{ backgroundColor: "#fff" }}>
+          <Sider collapsed={collapsed}  style={{ backgroundColor: token.headerBg }}>
             <Sidebar />
           </Sider>
-          <Content>
+          <Content style={{padding:'1rem'}}>
             <Outlet />
           </Content>
         </Layout>

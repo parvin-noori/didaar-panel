@@ -1,4 +1,4 @@
-import { Menu } from "antd";
+import { Menu, theme } from "antd";
 import React from "react";
 import {
   PieChartOutlined,
@@ -8,6 +8,8 @@ import {
   AppstoreOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { red } from "@ant-design/colors";
 
 export default function Sidebar() {
   function getItem(label, key, icon, children, type) {
@@ -19,10 +21,20 @@ export default function Sidebar() {
       type,
     };
   }
+  const { t } = useTranslation();
+  const { token } = theme.useToken();
 
   const items = [
-    getItem(<Link to={"/"}>معاملات</Link>, "1", <PieChartOutlined />),
-    getItem(<Link to={"/activity"}>فعالیت ها</Link>, "2", <DesktopOutlined />),
+    getItem(
+      <Link to={"/"}>{t("mainLayout.sidebar.deal")}</Link>,
+      "1",
+      <PieChartOutlined />
+    ),
+    getItem(
+      <Link to={"/activity"}>{t("mainLayout.sidebar.activity")}</Link>,
+      "2",
+      <DesktopOutlined />
+    ),
     getItem(<Link to={"/case"}>کارت ها</Link>, "3", <ContainerOutlined />),
     getItem("Navigation One", "sub1", <MailOutlined />, [
       getItem("Option 5", "5"),
@@ -41,7 +53,12 @@ export default function Sidebar() {
   ];
   return (
     <div>
-      <Menu defaultSelectedKeys={["1"]} mode="inline" items={items} />
+      <Menu
+        defaultSelectedKeys={["1"]}
+        mode="inline"
+        items={items}
+        style={{ backgroundColor: token.headerBg }}
+      />
     </div>
   );
 }
