@@ -9,12 +9,20 @@ import {
   Typography,
 } from "antd";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, redirect, useSubmit } from "react-router-dom";
+import { httpService } from "@core/http-service";
+import { useState } from "react";
 const { Text } = Typography;
 
 export default function Login() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submitForm = useSubmit();
+
   const onFinish = (values) => {
     console.log("success :", values);
+    const { prefix, remember, ...formData } = values;
+    submitForm(formData, { method: "post" });
+    setIsSubmitting(true);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("failed:", errorInfo);
@@ -58,8 +66,11 @@ export default function Login() {
         >
           <Form.Item
             label={t("login.phoneNumber")}
-            name="phone"
-            rules={[{ required: true, message: t("login.validation.mobileRequired") }]}
+            name="mobile"
+            rules={[
+              { required: true, message: t("login.validation.mobileRequired") },
+              { min: 11, message: t("register.validation.mobileLength") },
+            ]}
           >
             <Input
               addonBefore={prefixSelector}
@@ -71,7 +82,12 @@ export default function Login() {
           <Form.Item
             label={t("login.password")}
             name="password"
-            rules={[{ required: true, message: t('login.validation.passwordRequired') }]}
+            rules={[
+              {
+                required: true,
+                message: t("login.validation.passwordRequired"),
+              },
+            ]}
           >
             <Input.Password />
           </Form.Item>
@@ -85,11 +101,21 @@ export default function Login() {
             <Checkbox>{t("login.rememberMe")}</Checkbox>
           </Form.Item>
 
-          <Button type="primary" htmlType="submit" block>
+          <Button type="primary" htmlType="submit" block loading={isSubmitting}>
             {t("login.login")}
           </Button>
         </Form>
       </Card>
     </Flex>
   );
+}
+
+export async function loginAction({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  const response = await httpService.post("/Users/login", data);
+  if (response.status === 200) {
+    localStorage.setItem("token", response?.data.token);
+    return redirect('/')
+  }
 }

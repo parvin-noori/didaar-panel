@@ -12,7 +12,7 @@ import {
 } from "antd";
 const { Text } = Typography;
 import { Link, useActionData, useNavigate, useSubmit } from "react-router-dom";
-import { httpService } from "../../../core/http-service";
+import { httpService } from "@core/http-service";
 import { useTranslation } from "react-i18next";
 
 export default function Register() {
@@ -148,7 +148,7 @@ export default function Register() {
             type="primary"
             htmlType="submit"
             block
-            disabled={isSubmitting}
+            loading={isSubmitting}
           >
             {t("register.register")}
           </Button>
