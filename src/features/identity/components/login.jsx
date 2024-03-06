@@ -26,6 +26,7 @@ export default function Login() {
         style={{
           width: 70,
         }}
+        defaultValue="+98"
       >
         <Select.Option value="98">+98</Select.Option>
         <Select.Option value="86">+86</Select.Option>
