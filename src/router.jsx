@@ -1,20 +1,34 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login, { loginAction } from "./features/identity/components/login";
-import Register, { registerAction } from "./features/identity/components/register";
+import Register, {
+  registerAction,
+} from "./features/identity/components/register";
 import IdentityLayout from "./layouts/identity-layout";
 import MainLayout from "./layouts/main-layout";
 import Courses from "./pages/courses";
+import Deal from "./pages/deal";
+import Activity from "./pages/activity";
+import Case from "./pages/case";
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element:<MainLayout/>,
-    children:[
+    path: "/",
+    element: <MainLayout />,
+    children: [
       {
-        element:<Courses/>,
-        index:true
+        element: <Deal />,
+        index: true,
+      },
+      {
+        path:"activity",
+        element: <Activity />
+        
+      },
+      {
+        path:"case",
+        element:<Case/>
       }
-    ]
+    ],
   },
   {
     element: <IdentityLayout />,
@@ -22,8 +36,8 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
-        action:loginAction,
-        errorElement:<Login/>
+        action: loginAction,
+        errorElement: <Login />,
       },
       {
         path: "register",
