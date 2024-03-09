@@ -104,9 +104,10 @@ export default function MainLayout() {
       <Layout style={{height:"100vh"}}>
         <Row
           align="middle"
+          className="appHeader"
           style={{ padding: "1rem", backgroundColor: token.headerBg }}
         >
-          <Col span={1}>
+          <Col span={{lg:1,sm:4}}>
             {" "}
             <Button
               type="text"

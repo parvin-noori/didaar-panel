@@ -49,5 +49,31 @@
         "createrowListview":"ایجاد کاریز",
         "all":"همه",
         "todayAndLastDays":"امروز و تاریخ گذشته"
+},
+"activity":{
+    "allActivities":"همه فعالیت ها",
+    "simpleNote":"یادداشت ساده",
+    "incomingCall":"تماس ورودی",
+    "call":"تماس",
+    "metting":"جلسه",
+    "duty":"وظیفه",
+    "sendMessage":"ارسال پیام",
+    "list":"لیست",
+    "calender":"تقویم",
+    "all":"همه",
+    "todayAndLastDays":"تاریخ گذشته",
+    "today":"امروز",
+    "tommorow":"فردا",
+    "UntilNextWeek":"تا آخر هفته",
+    "anotherDate":"تاریخ دیگر",
+    "nextWeek":"هفته دیگر",
+    "activityTitle":"عنوان فعالیت",
+    "responsible":"مسئول انجام",
+    "activityDate":"تاریخ فعالیت",
+    "relatedPersons":"اشخاص و افراد مرتبط",
+    "relatedDeal":"معامله مرتبط",
+    "relatedCase":"کارت مرتبط",
+    "sunday":"یکشنبه"
+
 }
 }

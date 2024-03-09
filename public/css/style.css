@@ -1,7 +1,12 @@
-
-
-body{
-    margin: 0;
-    font-family: iranyekan;
-    padding: 0;
+body {
+  margin: 0;
+  font-family: iranyekan;
+  padding: 0;
+}
+.ant-menu-item-selected {
+  background-color: blud;
+}
+.appHeader {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: green;
 }

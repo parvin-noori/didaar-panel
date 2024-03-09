@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import { ConfigProvider } from "antd";
 import { AppProvider, useAppContext } from "./contexts/app/app-context.jsx";
 import { grey, red } from "@ant-design/colors";
+import "../public/css/iranYekan.css";
 
 const MyApp = () => {
   const { direction } = useAppContext();

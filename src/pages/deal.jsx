@@ -32,7 +32,7 @@ export default function Deal() {
   return (
     <>
       <Space>
-        <Radio.Group value="middle">
+        <Radio.Group  value="row-listview">
           <Radio.Button value="row-listview">
             {t("deal.rowListview")}
           </Radio.Button>
@@ -48,7 +48,7 @@ export default function Deal() {
             <DownOutlined />
           </Button>
         </Dropdown>
-        <Radio.Group value="middle">
+        <Radio.Group value="all">
           <Radio.Button value="all">{t("deal.all")}</Radio.Button>
           <Radio.Button value="todayAndLastDays">
             {t("deal.todayAndLastDays")}

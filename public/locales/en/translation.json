@@ -48,6 +48,32 @@
             "createrowListview":"create row listview",
             "all":"all",
             "todayAndLastDays":"today and last days"
+    },
+    "activity":{
+        "allActivities":"All activities",
+        "simpleNote":"Simple note",
+        "incomingCall":"Incoming call",
+        "call":"Call",
+        "metting":"Metting",
+        "duty":"Duty",
+        "sendMessage":" Send message",
+        "list":"list",
+        "calender":"calender",
+        "all":"all",
+        "todayAndLastDays":"today and last days",
+        "today":"today",
+        "tommorow":"tommorow",
+        "UntilNextWeek":"until next week",
+        "anotherDate":"another date",
+        "nextWeek":"next week",
+        "activityTitle":"Activity title",
+        "responsible": "Responsible",
+        "activityDate":"Activity date",
+        "relatedPersons":"Related persons",
+        "relatedDeal": "Related deal",
+        "relatedCase":"Related case",
+        "sunday":"sunday"
+
     }
     
 }
