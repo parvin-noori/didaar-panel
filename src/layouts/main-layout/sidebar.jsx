@@ -35,7 +35,7 @@ export default function Sidebar() {
       "2",
       <DesktopOutlined />
     ),
-    getItem(<Link to={"/case"}>کارت ها</Link>, "3", <ContainerOutlined />),
+    getItem(<Link to={"/case"}>{t("mainLayout.sidebar.cases")}</Link>, "3", <ContainerOutlined />),
     getItem("Navigation One", "sub1", <MailOutlined />, [
       getItem("Option 5", "5"),
       getItem("Option 6", "6"),
